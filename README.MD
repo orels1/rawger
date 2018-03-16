@@ -1,6 +1,6 @@
-<h1 align="center">⚔ RAWGer ⚔</h1>
+<h1 align="center">RAWGer</h1>
 <p align="center">
-  <strong>rawg.io api client</strong>
+  <strong>⚔ rawg.io api client ⚔</strong>
 </p>
 
 <p align="center">
