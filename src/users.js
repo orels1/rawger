@@ -23,7 +23,8 @@ const games = (user) => async (statuses) => {
   }));
 
   return ({
-    get: key => key ? results[key] : results,
+    raw: () => json.results,
+    get: () => results,
     count: () => results.length,
     filter: predicate => filter(results, predicate),
     find: predicate => filter(results, predicate),
