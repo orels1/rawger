@@ -1,0 +1,23 @@
+{
+  "name": "rawg",
+  "version": "0.0.1",
+  "description": "RAWG.io api client library",
+  "main": "index.js",
+  "repository": "https://github.com/orels1/rawg",
+  "author": "orels1",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "node ./src",
+    "debug": "nodemon --inspect ./src"
+  },
+  "dependencies": {
+    "idx": "^2.2.0",
+    "isomorphic-fetch": "^2.2.1",
+    "lodash": "^4.17.5"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.0",
+    "nodemon": "^1.17.2"
+  }
+}
