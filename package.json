@@ -1,5 +1,5 @@
 {
-  "name": "rawg",
+  "name": "rawger",
   "version": "0.0.1",
   "description": "RAWG.io api client library",
   "main": "index.js",
