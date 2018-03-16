@@ -2,7 +2,7 @@
   "name": "rawger",
   "version": "0.0.2",
   "description": "RAWG.io api client library",
-  "main": "index.js",
+  "main": "./src/index.js",
   "repository": "https://github.com/orels1/rawg",
   "author": "orels1",
   "license": "MIT",
