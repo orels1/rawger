@@ -1,4 +1,4 @@
-<h1 align="center">RAWGer</h1>
+<h1 align="center">rawger</h1>
 <p align="center">
   <strong>⚔ rawg.io api client ⚔</strong>
 </p>
@@ -17,17 +17,18 @@ npm i --save rawger
 
 ## Usage
 
-> Check examples for more usage examples
+> Check examples.js for more usage examples
 
 ```js
 const { users } = require('rawger');
 
 // get "Currently Playing" games for user
-const playing = await users('orels1').games('playing').get();
+const playing = (await users('orels1').games('playing')).get();
+
 
 // get count of owned games
-const owned = await users('orels1').games('owned').count();
+const owned = (await users('orels1').games('owned')).count();
 
 // get raw api response object for "Want to Play" games
-const raw = await users('orels1').games('toplay').raw();
+const raw = (await users('orels1').games('toplay')).raw();
 ```
