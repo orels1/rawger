@@ -12,9 +12,13 @@
     "debug": "nodemon --inspect ./src"
   },
   "dependencies": {
+    "cmnd": "^0.3.0",
     "idx": "^2.2.0",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.5"
+  },
+  "bin": {
+    "rawg": "cli/bin.js"
   },
   "devDependencies": {
     "eslint": "^4.19.0",

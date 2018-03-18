@@ -35,6 +35,12 @@ const raw = (await users('orels1').games('toplay')).raw();
 const profile = (await users('orels1').profile()).get();
 ```
 
+You can also use CLI
+
+```shell
+rawg users orels1
+```
+
 ## Users
 
 ### Profile
