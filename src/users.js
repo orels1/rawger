@@ -5,7 +5,7 @@ const idx = require('idx');
 
 const { API_ROOT } = require('./constats');
 
-const pather = (user, section, query = '') => `${API_ROOT}/users/${user}/${section}${query}`;
+const pather = (user, section, query = '') => `${API_ROOT}/users/${user}${section ? `/${section}` : ''}${query}`;
 
 const games = (user) => async (statuses) => {
   const filteredStatuses = typeof statuses === 'string' ? statuses : statuses.join(',');
@@ -22,17 +22,52 @@ const games = (user) => async (statuses) => {
     platforms: game.platforms.map(p => p.platform.name)
   }));
 
-  return ({
-    raw: () => json.results,
-    get: () => results,
-    count: () => results.length,
-    filter: predicate => filter(results, predicate),
-    find: predicate => filter(results, predicate),
-    findOne: predicate => find(results, predicate)
-  });
+  return collection(json, results);
 }
 
+const profile = (user) => async () => {
+  const path = pather(user);
+  const resp = await fetch(path);
+  const json = await resp.json();
+
+  const formatted = {
+    username: json.username,
+    slug: json.slug,
+    full_name: json.full_name,
+    bio: json.bio,
+    avatar: json.avatar,
+    background: idx(json, _ => _.game_background.url),
+    color: idx(json, _ => _.game_background.dominant_color),
+    counters: {
+      games: json.games_count,
+      collections: json.collections_count,
+      reviews: json.reviews_count,
+      comments: json.comments_count,
+      followers: json.followers_count,
+      following: json.following_count
+    },
+    share: json.share_image
+  }
+
+  return single(json, formatted);
+}
+
+const single = (json, formatted) => ({
+  raw: () => json,
+  get: key => key ? formatted[key] : formatted
+})
+
+const collection = (json, formatted) => ({
+  raw: () => json.results,
+  get: () => formatted,
+  count: () => formatted.length,
+  filter: predicate => filter(formatted, predicate),
+  find: predicate => filter(formatted, predicate),
+  findOne: predicate => find(formatted, predicate)
+})
+
 const users = (user) => ({
+  profile: profile(user),
   games: games(user)
 })
 
