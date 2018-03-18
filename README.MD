@@ -51,7 +51,7 @@ This function accepts no arguments
 
 #### Return value
 
-Returns an item. See [item methods for the list of methods](###Items)
+Returns an item. See [item methods for the list of methods](#items)
 
 ### Games
 
@@ -71,7 +71,7 @@ const games = await users('orels1').games('owned'); // returns list of owned gam
   - yet - Yet to Play
   - owned - All Games
 
-Request gaemes for multiple statuses by providing a list of statuses
+Request games for multiple statuses by providing a list of statuses
 
 ```js
 const games = await users('orels1').games('yet, playing');
@@ -81,7 +81,7 @@ const games = await users('orels1').games(['yet', 'playing']);
 
 #### Return value
 
-Returns a collection of games. See [collections methods for the list of methods](###Collections)
+Returns a collection of games. See [collections methods for the list of methods](#collections)
 
 ## Return formats
 
