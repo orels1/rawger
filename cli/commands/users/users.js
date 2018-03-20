@@ -3,13 +3,13 @@ module.exports = (() => {
   'use strict';
 
   const Command = require('cmnd').Command;
-  const users = require('../../src/users');
+  const users = require('../../../src/users');
 
-  class User extends Command {
+  class Users extends Command {
 
     constructor() {
 
-      super('user');
+      super('users');
 
     }
 
@@ -30,6 +30,6 @@ module.exports = (() => {
 
   }
 
-  return User;
+  return Users;
 
 })();
