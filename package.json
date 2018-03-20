@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "cmnd": "^0.3.0",
+    "common-tags": "^1.7.2",
     "idx": "^2.2.0",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.17.5"
