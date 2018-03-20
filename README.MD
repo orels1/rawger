@@ -15,7 +15,11 @@
 npm i --save rawger
 ```
 
-## Usage
+## Documentation
+
+[**Full documentation is available here**](https://www.notion.so/orels1/RAWGer-46ecd676fb5149bfb583c55b0862ab76)
+
+## Usage Examples
 
 > Check examples.js for more usage examples
 
@@ -41,70 +45,4 @@ You can also use CLI
 rawg users orels1
 ```
 
-## Users
-
-### Profile
-
-#### Usage
-
-```js
-const games = await users('orels1').profile(); // returns profile for the user
-```
-
-#### Arguments
-
-This function accepts no arguments
-
-#### Return value
-
-Returns an item. See [item methods for the list of methods](#items)
-
-### Games
-
-#### Usage
-
-```js
-const games = await users('orels1').games('owned'); // returns list of owned games
-```
-
-#### Arguments
-
-- `statuses` - a list of statuses to filter by. Can be `String` or `Array`
-  - playing - Currently Playing
-  - toplay - Want to Play
-  - beaten - Completed
-  - dropped - Abandoned
-  - yet - Yet to Play
-  - owned - All Games
-
-Request games for multiple statuses by providing a list of statuses
-
-```js
-const games = await users('orels1').games('yet, playing');
-
-const games = await users('orels1').games(['yet', 'playing']);
-```
-
-#### Return value
-
-Returns a collection of games. See [collections methods for the list of methods](#collections)
-
-## Return formats
-
-### Collections
-
-All collections expose the same set of methods
-
-- `raw()` - returns raw API response
-- `get()` - returns the actual collection
-- `count()` - counts items in collection
-- `filter(predicate)` - applies a provided filter, based on `lodash/filter`
-- `find(predicate)` - does a search based on provided filter, based on `lodash/filter`
-- `findOne(predicate)` - returns first item that matched the filter, based on `lodash/find`
-
-### Items
-
-All single items expose the same set of methods
-
-- `raw()` - returns raw API response
-- `get()` - returns the actual item
+Run `rawg` without any arguments to see the list of available commands
