@@ -4,6 +4,19 @@
 </p>
 
 <p align="center">
+  <a href="https://www.npmjs.com/package/rawger">
+    <img src="https://img.shields.io/npm/v/rawger.svg?style=flat-square" />
+  </a>
+  <a href="https://www.npmjs.com/package/rawger">
+    <img src="https://img.shields.io/npm/dm/rawger.svg?style=flat-square" />
+  </a>
+  <a href="https://snyk.io/test/github/orels1/rawger?targetFile=package.json">
+    <img src="https://snyk.io/test/github/orels1/rawger/badge.svg?targetFile=package.json&style=flat-square" alt="Known Vulnerabilities" data-canonical-src="https://snyk.io/test/github/orels1/rawger?targetFile=package.json" style="max-width:100%;">
+  </a>
+  <img src="https://img.shields.io/badge/100%25-unofficial-blue.svg?style=flat-square" />
+</p>
+
+<p align="center">
   <sub>Built with ❤︎ by
   <a href="https://twitter.com/orels1_">orels1</a>
   </sub>
