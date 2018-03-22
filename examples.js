@@ -13,4 +13,13 @@ const { users } = require('./src');
   // Get user profile
   const profile = (await users('orels1').profile()).get();
   console.log(profile);
+
+  // Get next page for the paginated endpoints
+  const games = await (await users('orels1').games('owned')).next();
+  const nextGames = games.get();
+  console.log(nextGames);
+
+  // Get user's collections
+  const collections = (await users('orels1').collections()).get();
+  console.log(collections);
 })();

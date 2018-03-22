@@ -7,7 +7,15 @@ const { API_ROOT } = require('./constats');
 
 const pather = (user, section, query = '') => `${API_ROOT}/users/${user}${section ? `/${section}` : ''}${query}`;
 
-const formatGame = (game) => ({
+const fetchPage = (url, formatter) => async () => {
+  const resp = await fetch(url);
+  const json = await resp.json();
+
+  const formatted = json.results.map(formatter);
+  return collection(json, formatted, formatter);
+}
+
+const formatGame = game => ({
   raw: game,
   image: game.background_image,
   name: game.name,
@@ -23,7 +31,7 @@ const games = (user) => async (statuses) => {
   const json = await resp.json();
 
   const formatted = json.results.map(formatGame);
-  return collection(json, formatted);
+  return collection(json, formatted, formatGame);
 }
 
 const profile = (user) => async () => {
@@ -59,7 +67,30 @@ const favorite = (user) => async () => {
   const json = await resp.json();
   
   const formatted = json.results.map(formatGame);
-  return collection(json, formatted);
+  return collection(json, formatted, formatGame);
+}
+
+const formatCollection = collection => ({
+  raw: collection,
+  name: collection.name,
+  description: collection.description,
+  image: collection.game_background.url,
+  color: collection.game_background.dominant_color,
+  created: collection.created,
+  updated: collection.updated,
+  games: collection.games_count,
+  ratings: collection.likes_rating,
+  share: collection.share_image,
+  creator: collection.creator
+})
+
+const collections = (user) => async () => {
+  const path = pather(user, 'collections');
+  const resp = await fetch(path);
+  const json = await resp.json();
+
+  const formatted = json.results.map(formatCollection);
+  return collection(json, formatted, formatCollection);
 }
 
 const single = (json, formatted) => ({
@@ -67,19 +98,22 @@ const single = (json, formatted) => ({
   get: key => key ? formatted[key] : formatted
 })
 
-const collection = (json, formatted) => ({
+const collection = (json, formatted, formatter) => ({
   raw: () => json.results,
   get: () => formatted,
   count: () => json.count,
   filter: predicate => filter(formatted, predicate),
   find: predicate => filter(formatted, predicate),
-  findOne: predicate => find(formatted, predicate)
+  findOne: predicate => find(formatted, predicate),
+  next: json.next ? fetchPage(json.next, formatter) : () => {},
+  previous: json.previous ? fetchPage(json.next, formatter) : () => {}
 })
 
 const users = (user) => ({
   profile: profile(user),
   favorite: favorite(user),
-  games: games(user)
+  games: games(user),
+  collections: collections(user)
 })
 
 module.exports = users;
