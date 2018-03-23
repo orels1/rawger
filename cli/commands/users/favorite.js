@@ -6,7 +6,7 @@ module.exports = (() => {
   const { stripIndents } = require('common-tags');
   const users = require('../../../src/users');
 
-  class Users extends Command {
+  class Favorite extends Command {
 
     constructor() {
 
@@ -40,6 +40,6 @@ module.exports = (() => {
 
   }
 
-  return Users;
+  return Favorite;
 
 })();
