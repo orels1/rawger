@@ -93,6 +93,26 @@ const collections = (user) => async () => {
   return collection(json, formatted, formatCollection);
 }
 
+const formatReviews = review => ({
+  raw: review,
+  game: review.game.name,
+  text: review.text,
+  rating: find(review.game.ratings, { id: review.rating }).title,
+  created: review.created,
+  likes: review.likes_rating,
+  comments: review.comments,
+  share: review.share_image
+});
+
+const reviews = (user) => async () => {
+  const path = pather(user, 'reviews');
+  const resp = await fetch(path);
+  const json = await resp.json();
+
+  const formatted = json.results.map(formatReviews);
+  return collection(json, formatted, formatReviews);
+}
+
 const single = (json, formatted) => ({
   raw: () => json,
   get: key => key ? formatted[key] : formatted
@@ -113,7 +133,8 @@ const users = (user) => ({
   profile: profile(user),
   favorite: favorite(user),
   games: games(user),
-  collections: collections(user)
+  collections: collections(user),
+  reviews: reviews(user)
 })
 
 module.exports = users;

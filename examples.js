@@ -22,4 +22,8 @@ const { users } = require('./src');
   // Get user's collections
   const collections = (await users('orels1').collections()).get();
   console.log(collections);
+
+  // Get user's reviews
+  const reviews = (await users('orels1').reviews()).get();
+  console.log(reviews);
 })();
