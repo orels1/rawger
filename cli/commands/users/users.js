@@ -4,7 +4,10 @@ module.exports = (() => {
 
   const Command = require('cmnd').Command;
   const { stripIndent } = require('common-tags');
-  const users = require('../../../src/users');
+  const Rawger = require('../../../src');
+
+  const rawger = Rawger();
+  const { users } = rawger;
 
   class Users extends Command {
 
