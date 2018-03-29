@@ -68,7 +68,7 @@ const profile = (await users('orels1').profile()).get();
 
 ### Authenticated client
 
-You can also intialize an authenticated cleint to perform such actions as game status updates, reviews publishing and so on.
+You can also initialize an authenticated client to perform such actions as game status updates, reviews publishing and so on.
 
 ```js
 const Rawger = require('rawger');
