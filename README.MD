@@ -25,8 +25,12 @@
 
 ## Installation
 
-```
+```shell
+# with npm
 npm i --save rawger
+
+#with yarn
+yarn add rawger
 ```
 
 ## Documentation
@@ -38,7 +42,7 @@ npm i --save rawger
 > Check examples folder for more usage examples
 
 ```js
-const Rawger = require('../src');
+const Rawger = require('rawger');
 
 // initialize rawger with default 60s cache
 // you can supply a different timeout (check examples folder)
