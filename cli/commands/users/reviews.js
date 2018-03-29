@@ -5,7 +5,10 @@ module.exports = (() => {
   const Command = require('cmnd').Command;
   const { html, stripIndents } = require('common-tags');
   const striptags = require('striptags');
-  const users = require('../../../src/users');
+  const Rawger = require('../../../src');
+
+  const rawger = Rawger();
+  const { users } = rawger;
 
   class Reviews extends Command {
 
