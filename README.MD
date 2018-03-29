@@ -1,6 +1,7 @@
 <h1 align="center">rawger</h1>
 <p align="center">
-  <strong>⚔ rawg.io api client ⚔</strong>
+  <strong>⚔ rawg.io api client ⚔</strong><br />
+  <small>An easy to use client with built-in caching</small>
 </p>
 
 <p align="center">
