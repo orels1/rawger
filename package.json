@@ -9,7 +9,7 @@
   "private": false,
   "scripts": {
     "start": "node ./src",
-    "debug": "nodemon --inspect ./src"
+    "debug": "nodemon --inspect-brk ./src"
   },
   "dependencies": {
     "cmnd": "^0.3.0",
