@@ -1,5 +1,8 @@
-require('isomorphic-fetch');
-const { users } = require('./src');
+const Rawger = require('../src');
+
+const rawger = Rawger(10);
+
+const { users } = rawger;
 
 (async () => {
   // Get currently playing games for user
