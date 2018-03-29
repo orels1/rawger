@@ -1,6 +1,3 @@
-require('isomorphic-fetch');
-const users = require('./users');
+const rawger = require('./rawger');
 
-module.exports = {
-  users
-}
+module.exports = rawger;

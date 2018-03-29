@@ -7,9 +7,8 @@ const { API_ROOT } = require('./constats');
 
 const pather = (user, section, query = '') => `${API_ROOT}/users/${user}${section ? `/${section}` : ''}${query}`;
 
-const fetchPage = (url, formatter) => async () => {
-  const resp = await fetch(url);
-  const json = await resp.json();
+const fetchPage = fetcher => (url, formatter) => async () => {
+  const json = await fetcher(url);
 
   const formatted = json.results.map(formatter);
   return collection(json, formatted, formatter);
@@ -24,20 +23,18 @@ const formatGame = game => ({
   platforms: game.platforms.map(p => p.platform.name)
 });
 
-const games = (user) => async (statuses) => {
+const games = fetcher => user => async (statuses) => {
   const filteredStatuses = typeof statuses === 'string' ? statuses : statuses.join(',');
   const path = pather(user, 'games', `?page=1&statuses=${filteredStatuses}`);
-  const resp = await fetch(path);
-  const json = await resp.json();
+  const json = await fetcher.get(path);
 
   const formatted = json.results.map(formatGame);
   return collection(json, formatted, formatGame);
 }
 
-const profile = (user) => async () => {
+const profile = fetcher => user => async () => {
   const path = pather(user);
-  const resp = await fetch(path);
-  const json = await resp.json();
+  const json = await fetcher.get(path);
 
   const formatted = {
     username: json.username,
@@ -61,10 +58,9 @@ const profile = (user) => async () => {
   return single(json, formatted);
 }
 
-const favorite = (user) => async () => {
+const favorite = fetcher => user => async () => {
   const path = pather(user, 'favorites');
-  const resp = await fetch(path);
-  const json = await resp.json();
+  const json = await fetcher.get(path);
   
   const formatted = json.results.map(formatGame);
   return collection(json, formatted, formatGame);
@@ -84,10 +80,9 @@ const formatCollection = collection => ({
   creator: collection.creator
 })
 
-const collections = (user) => async () => {
+const collections = fetcher => user => async () => {
   const path = pather(user, 'collections');
-  const resp = await fetch(path);
-  const json = await resp.json();
+  const json = await fetcher.get(path);
 
   const formatted = json.results.map(formatCollection);
   return collection(json, formatted, formatCollection);
@@ -104,10 +99,9 @@ const formatReviews = review => ({
   share: review.share_image
 });
 
-const reviews = (user) => async () => {
+const reviews = fetcher => user => async () => {
   const path = pather(user, 'reviews');
-  const resp = await fetch(path);
-  const json = await resp.json();
+  const json = await fetcher.get(path);
 
   const formatted = json.results.map(formatReviews);
   return collection(json, formatted, formatReviews);
@@ -129,12 +123,12 @@ const collection = (json, formatted, formatter) => ({
   previous: json.previous ? fetchPage(json.next, formatter) : () => {}
 })
 
-const users = (user) => ({
-  profile: profile(user),
-  favorite: favorite(user),
-  games: games(user),
-  collections: collections(user),
-  reviews: reviews(user)
+const users = fetcher => (user) => ({
+  profile: profile(fetcher)(user),
+  favorite: favorite(fetcher)(user),
+  games: games(fetcher)(user),
+  collections: collections(fetcher)(user),
+  reviews: reviews(fetcher)(user)
 })
 
-module.exports = users;
+module.exports = fetcher => users(fetcher);
