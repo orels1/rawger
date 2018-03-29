@@ -34,10 +34,16 @@ npm i --save rawger
 
 ## Usage Examples
 
-> Check examples.js for more usage examples
+> Check examples folder for more usage examples
 
 ```js
-const { users } = require('rawger');
+const Rawger = require('../src');
+
+// initialize rawger with default 60s cache
+// you can supply a different timeout (check examples folder)
+// or use rawger.purgeCache(); to force-clear the cache altogether
+const rawger = Rawger();
+const { users } = rawger;
 
 // get "Currently Playing" games for user
 const playing = (await users('orels1').games('playing')).get();
@@ -55,7 +61,28 @@ const profile = (await users('orels1').profile()).get();
 You can also use CLI
 
 ```shell
-rawg users orels1
+rawg users orels1 #returns user profile
+
+# 👤  orels1
+# 📖  JS dev @x-team by day / game hoarder by night 🎮
+# 👾  651 games owned
+# ℹ️  8 collections | 10 comments
+
+rawg users:favorite orels1 #returns user's favorite games
+
+# 👤  orels1's favorite games
+# 👾  8 total
+
+# - Mirror's Edge
+# - To the Moon
+# - Rakuen
+# - Destiny
+# - Finding Paradise
+# - Portal 2
+# - Freelancer
+# - Half-Life 2
 ```
+
+**Note:** CLI is always uncached
 
 Run `rawg` without any arguments to see the list of available commands
