@@ -1,6 +1,6 @@
 {
   "name": "rawger",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "RAWG.io api client library",
   "main": "./src/index.js",
   "repository": "https://github.com/orels1/rawg",
