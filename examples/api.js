@@ -1,10 +1,9 @@
 const Rawger = require('../src');
 
-const rawger = Rawger(10);
-
-const { users } = rawger;
-
 (async () => {
+  const rawger = await Rawger({ timeout: 10 });
+
+  const { users } = rawger;
   // Get currently playing games for user
   const gamesPlaying = (await users('orels1').games('playing')).get();
   console.log(gamesPlaying);

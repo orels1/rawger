@@ -41,13 +41,16 @@ yarn add rawger
 
 > Check examples folder for more usage examples
 
+### Unauthenticated client
+
 ```js
 const Rawger = require('rawger');
 
 // initialize rawger with default 60s cache
 // you can supply a different timeout (check examples folder)
 // or use rawger.purgeCache(); to force-clear the cache altogether
-const rawger = Rawger();
+// ⚠ starting with v1.1 you need to always await the init process
+const rawger = await Rawger();
 const { users } = rawger;
 
 // get "Currently Playing" games for user
@@ -61,6 +64,24 @@ const raw = (await users('orels1').games('toplay')).raw();
 
 // get user profile
 const profile = (await users('orels1').profile()).get();
+```
+
+### Authenticated client
+
+You can also intialize an authenticated cleint to perform such actions as game status updates, reviews publishing and so on.
+
+```js
+const Rawger = require('rawger');
+
+// make sure to `await` the init process
+const rawger = await Rawger({
+  email: 'some@email.com',
+  password: 'do-not-share-this'
+});
+const { users } = rawger;
+
+// set FarCry 5 to "Currently Playing" for current account
+await users('orels1').update().game('23585', { status: 'playing'});
 ```
 
 You can also use CLI
@@ -89,5 +110,9 @@ rawg users:favorite orels1 #returns user's favorite games
 ```
 
 **Note:** CLI is always uncached
+
+### Authenticated CLI
+
+To run authenticated requests through the CLI, you will need to set `RAWG_USER` and `RAWG_PASS` environmental variables. It's not the best way, but that's all I got for now.
 
 Run `rawg` without any arguments to see the list of available commands

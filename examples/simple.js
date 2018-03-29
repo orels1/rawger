@@ -1,12 +1,11 @@
 const Rawger = require('../src');
 
-// initialize rawger with 10s cache timeout
-// default is 60s (if no value is passed)
-const rawger = Rawger(10);
-
-const { users } = rawger;
-
 (async () => {
+  // initialize rawger with 10s cache timeout
+  // default is 60s (if no value is passed
+  const rawger = await Rawger({ timeout: 10 });
+  const { users } = rawger;
+
   const profile = (await users('orels1').profile()).get();
   console.log(profile);
 

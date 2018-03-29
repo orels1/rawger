@@ -4,6 +4,10 @@
 
 A simple set of real-world-esque examples. Get the data, get cached data, purge caches, etc.
 
+## Update Game Status
+
+Shows authorization handling and an authorized request example.
+
 ## API
 
 A set of examples using different methods available in the package.
