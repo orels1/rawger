@@ -83,36 +83,3 @@ const { users } = rawger;
 // set FarCry 5 to "Currently Playing" for current account
 await users('orels1').update().game('23585', { status: 'playing'});
 ```
-
-You can also use CLI
-
-```shell
-rawg users orels1 #returns user profile
-
-# 👤  orels1
-# 📖  JS dev @x-team by day / game hoarder by night 🎮
-# 👾  651 games owned
-# ℹ️  8 collections | 10 comments
-
-rawg users:favorite orels1 #returns user's favorite games
-
-# 👤  orels1's favorite games
-# 👾  8 total
-
-# - Mirror's Edge
-# - To the Moon
-# - Rakuen
-# - Destiny
-# - Finding Paradise
-# - Portal 2
-# - Freelancer
-# - Half-Life 2
-```
-
-**Note:** CLI is always uncached
-
-### Authenticated CLI
-
-To run authenticated requests through the CLI, you will need to set `RAWG_USER` and `RAWG_PASS` environmental variables. It's not the best way, but that's all I got for now.
-
-Run `rawg` without any arguments to see the list of available commands
