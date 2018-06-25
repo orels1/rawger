@@ -1,4 +1,4 @@
-require('isomorphic-fetch');
+require('./fetchLoader');
 const Fetcher = require('./fetcher');
 const users = require('./users');
 const { pather } = require('./utils');
