@@ -1,4 +1,4 @@
-require('isomorphic-fetch');
+require('./fetchLoader');
 const merge = require('lodash/merge');
 
 const defaultHeaders = {
