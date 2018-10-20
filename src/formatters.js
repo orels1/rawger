@@ -4,6 +4,7 @@ const idx = require('idx');
 const formatGame = game => ({
   raw: game,
   image: game.background_image,
+  slug: game.slug,
   name: game.name,
   color: game.dominant_color,
   released: game.released,
@@ -55,10 +56,9 @@ const formatProfile = profile => ({
   share: profile.share_image
 });
 
-
 module.exports = {
   formatGame,
   formatCollection,
   formatReviews,
   formatProfile
-}
+};

@@ -3,7 +3,7 @@ const Rawger = require('../src');
 (async () => {
   const rawger = await Rawger({ timeout: 10 });
 
-  const { users } = rawger;
+  const { users, games } = rawger;
   // Get currently playing games for user
   const gamesPlaying = (await users('orels1').games('playing')).get();
   console.log(gamesPlaying);
@@ -28,4 +28,12 @@ const Rawger = require('../src');
   // Get user's reviews
   const reviews = (await users('orels1').reviews()).get();
   console.log(reviews);
+
+  // Get games matching 'witcher'
+  const searchResults = (await games.search('witcher')).get();
+  console.log(searchResults);
+
+  // Get single game by slug
+  const searchResults = (await games.get('the-witcher-3-wild-hunt')).get();
+  console.log(searchResults);
 })();
