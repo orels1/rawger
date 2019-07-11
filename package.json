@@ -13,7 +13,7 @@
   "dependencies": {
     "idx": "^2.2.0",
     "isomorphic-fetch": "^2.2.1",
-    "lodash": "^4.17.5"
+    "lodash": "^4.17.12"
   },
   "devDependencies": {
     "eslint": "^4.19.0",
