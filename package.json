@@ -15,8 +15,8 @@
   "dependencies": {
     "idx": "^2.2.0",
     "isomorphic-fetch": "^2.2.1",
-    "lodash": "^4.17.5",
-    "snyk": "^1.316.1"
+    "snyk": "^1.316.1",
+    "lodash": "^4.17.12"
   },
   "devDependencies": {
     "eslint": "^4.19.0",
